@@ -4,7 +4,7 @@ from tkinter import ttk, messagebox, simpledialog
 import matplotlib.pyplot as plt
 import numpy as np
 
-
+#yo
 class AnthropometryApp:
     def __init__(self, root):
         self.root = root
