@@ -2,7 +2,6 @@ import math
 import tkinter as tk
 from tkinter import ttk, messagebox, simpledialog
 import matplotlib.pyplot as plt
-import numpy as np
 
 #yo
 class AnthropometryApp:
