@@ -17,7 +17,7 @@ class AnthropometryApp:
         style.configure("TButton", font=("Helvetica", 12), padding=10)
         style.configure("TEntry", font=("Helvetica", 12), padding=5)
 
-        # Create and place labels and entry fields for user input
+        # Create entry fields for user input
         ttk.Label(self.root, text="Gender (male or female):").pack(pady=10)
         self.gender_entry = ttk.Entry(self.root)
         self.gender_entry.pack(pady=5)
@@ -46,11 +46,11 @@ class AnthropometryApp:
         self.neck_entry = ttk.Entry(self.root)
         self.neck_entry.pack(pady=5)
 
-        # Create and place the Calculate button
+        # Create Calculate button
         ttk.Button(self.root, text="Calculate", command=self.calculate).pack(pady=20)
 
     def calculate(self):
-        # Get the input values from the entry fields
+        # Get input 
         gender = self.gender_entry.get()
         height = float(self.height_entry.get())
         weight = float(self.weight_entry.get())
@@ -59,7 +59,7 @@ class AnthropometryApp:
         shoulder_circum = float(self.shoulder_entry.get())
         neck_circum = float(self.neck_entry.get())
 
-        # Calculate the results
+        # Calculate results
         ape_result = self.ape_index(wingspan, height)
         whr_result = self.waist_to_height(waist, height)
         stw_result = self.shoulder_to_waist(shoulder_circum, waist)
@@ -69,7 +69,7 @@ class AnthropometryApp:
         # Build the output string
         output = f"{ape_result}\n{whr_result}\n{stw_result}\n{bmi_result}\n{bfp_result}"
 
-        # Display the output using a message box
+        # Display output
         messagebox.showinfo("Results", output)
         filename = simpledialog.askstring("Save Results", "Enter a filename to save your results:")
         if filename:
@@ -78,30 +78,6 @@ class AnthropometryApp:
         with open(filename, "w") as file:
             file.write(output)
         messagebox.showinfo("File Saved", f"Results saved to {filename}")
-        #if filename:
-            #self.save_to_file(output, filename)
-            #self.plot_bmi_range(weight, height, filename)
-    #def plot_bmi_range(self, weight, height, filename):
-        #bmi = self.calculate_BMI(weight, height)
-        #categories = ["Underweight", "Normal", "Overweight", "Obese"]
-        #ranges = [18.5, 24.9, 29.9, 40]
-        #colors = ['blue', 'green', 'yellow', 'red']
-
-        #plt.figure(figsize=(8, 6))
-        #plt.bar(categories, ranges, color=colors)
-        #plt.axhline(y=bmi, color='gray', linestyle='dashed', linewidth=2)
-        #plt.text(0.5, bmi + 1, f'Your BMI: {bmi:.2f}', ha='center', va='bottom', color='gray')
-        #plt.xlabel("BMI Categories")
-        #plt.ylabel("BMI Range")
-        #plt.title("BMI Range Categories")
-        #plt.ylim(0, 40)
-        #plt.tight_layout()
-
-        #graph_filename = filename.split('.')[0] + "_bmi_graph.png"
-        #plt.savefig(graph_filename)
-        #plt.close()
-
-        #messagebox.showinfo("Graph Saved", f"Graph saved to {graph_filename}")
 
     def ape_index(self, wingspan, height):
         if wingspan - height >= 6:
